@@ -1,25 +1,28 @@
-import React from 'react';
-import { graphql } from 'gatsby';
+import React from "react";
+import { graphql } from "gatsby";
 
-import { dynamicI18n } from '../helpers';
-import { ComponentPicker } from '../components';
-import { Helmet } from 'react-helmet';
+import { dynamicI18n } from "../helpers";
+import { ComponentPicker, Home } from "../components";
+import { Helmet } from "react-helmet";
 
 const isTopBanner = (entry: MainPageEntryProps): entry is TopBannerProps =>
-  entry.__typename === 'ContentfulTopBanner';
+  entry.__typename === "ContentfulTopBanner";
 
 const isTopPageComponent = (entry: MainPageEntryProps) =>
-  isTopBanner(entry) || entry.__typename === 'ContentfulLogoBanner';
+  isTopBanner(entry) || entry.__typename === "ContentfulLogoBanner";
 
 const IndexPage = (props: Props) => {
   const { data, ...baseProps } = props;
   const [content] = data.page.edges;
-  const { entries, title }: { entries: MainPageEntryProps[]; title: string } = content.node;
+  const { entries, title }: { entries: MainPageEntryProps[]; title: string } =
+    content.node;
 
   const topBanner = entries.find(isTopBanner);
   const { mainHeader } = topBanner || {};
   const topPageComponents = entries.filter(isTopPageComponent);
-  const restOfComponents = entries.filter((entry) => !isTopPageComponent(entry));
+  const restOfComponents = entries.filter(
+    (entry) => !isTopPageComponent(entry)
+  );
 
   return (
     <main className="main-wrapper-1">
@@ -32,11 +35,21 @@ const IndexPage = (props: Props) => {
         <div className="top-page-wrapper d-flex flex-column justify-content-between">
           <span />
           {topPageComponents.map((entry, i) => (
-            <ComponentPicker entry={entry} {...baseProps} key={`${entry.id}-${i}`} smallPadding />
+            <ComponentPicker
+              entry={entry}
+              {...baseProps}
+              key={`${entry.id}-${i}`}
+              smallPadding
+            />
           ))}
         </div>
+        <Home />
         {restOfComponents.map((entry, i) => (
-          <ComponentPicker {...baseProps} entry={entry} key={`${entry.id}-${i}`} />
+          <ComponentPicker
+            {...baseProps}
+            entry={entry}
+            key={`${entry.id}-${i}`}
+          />
         ))}
       </div>
     </main>
