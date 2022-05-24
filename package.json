@@ -75,6 +75,8 @@
     "react-transition-group": "4.4.2",
     "react-visibility-sensor": "5.1.1",
     "react-wordcloud": "1.2.7",
+    "react-bootstrap": "^2.4.0",
+    "react-draggable": "^4.4.5",
     "remark": "13.0.0",
     "remark-html-katex": "3.0.0",
     "remark-math": "3.0.1",

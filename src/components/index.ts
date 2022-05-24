@@ -34,3 +34,4 @@ export * from './TopBannerLayout';
 export * from './utils';
 export * from './CustomButton';
 export * from './popup';
+export * from './draggable';
