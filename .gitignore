@@ -5,6 +5,8 @@ node_modules
 .vscode
 .envrc
 .netlify
+.env.development
+.env.production
 # Build directory
 public
 .DS_Store
